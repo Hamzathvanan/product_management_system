@@ -19,6 +19,33 @@ public class ProductService {
         return products;
     }
 
+    public List<Product> getProductByName(String name){
+        String productName = name.toLowerCase();
+        List<Product> filterByName = products.stream()
+                .filter(product -> product.getName().toLowerCase().contains(productName))
+                .sorted(Comparator.comparing(Product::getName))
+                .collect(Collectors.toList());
+        return filterByName;
+    }
+
+    public List<Product> getProductByType(String type) {
+        String productType = type.toLowerCase();
+        List<Product> filterByType = products.stream()
+                .filter(product -> product.getType().toLowerCase().contains(productType))
+                .sorted(Comparator.comparing(Product::getType))
+                .collect(Collectors.toList());
+        return filterByType;
+    }
+
+    public List<Product> getProductByPlace(String place) {
+        String productPlace = place.toLowerCase();
+        List<Product> filterByPlace = products.stream()
+                .filter(product -> product.getPlace().toLowerCase().contains(productPlace))
+                .sorted(Comparator.comparing(Product::getType))
+                .collect(Collectors.toList());
+        return filterByPlace;
+    }
+
     public List<Product> getProductsByWarrantyYear(int year){
 
         //This is to filter product by warranty year

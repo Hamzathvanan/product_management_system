@@ -79,5 +79,43 @@ public class Main {
         }
 
 
+        //Find products by name
+        System.out.println("=======================================");
+        System.out.println("Get Product By Name");
+        String name = "lg";
+        if (service.getProductByName(name).isEmpty()){
+            System.out.println("No Product found for the Name");
+        } else {
+            for (Product p: service.getProductByName(name)){
+                System.out.println(p+"\n");
+            }
+        }
+
+
+        //Find products by type
+        System.out.println("=======================================");
+        System.out.println("Get Product By Type");
+        String type = "tv";
+        if (service.getProductByType(type).isEmpty()){
+            System.out.println("No Product found for the Name");
+        } else {
+            for (Product p: service.getProductByType(type)){
+                System.out.println(p+"\n");
+            }
+        }
+
+        //Find products by place
+        System.out.println("=======================================");
+        System.out.println("Get Product By Place");
+        String place = "living";
+        if (service.getProductByPlace(place).isEmpty()){
+            System.out.println("No Product found for the Place");
+        } else {
+            for (Product p: service.getProductByPlace(place)){
+                System.out.println(p+"\n");
+            }
+        }
+
+
     }
 }
