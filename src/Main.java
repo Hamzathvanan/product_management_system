@@ -1,10 +1,7 @@
 import domain.Product;
 import service.ProductService;
-
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -24,9 +21,11 @@ public class Main {
         service.addProduct(new Product("LG Refrigerator", "Refrigerator", "Kitchen", 2023));
 
         List<Product> products = service.getAllProducts();
+
+        //This is to filter product by warranty year
         List<Product> filterProductsWarranty = products.stream()
                         .filter(product -> product.getWarranty()>=2024)
-                                .sorted((p1,p2) ->p1.getWarranty()- p2.getWarranty())
+                                .sorted((p1,p2) ->p2.getWarranty()- p1.getWarranty())
                                         .collect(Collectors.toList());
 
 
