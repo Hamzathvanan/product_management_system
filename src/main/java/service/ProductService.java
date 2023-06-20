@@ -1,5 +1,6 @@
 package service;
 
+import controller.ProductDBController;
 import domain.Product;
 
 import java.util.ArrayList;
@@ -10,9 +11,12 @@ import java.util.stream.Collectors;
 
 public class ProductService {
     private List<Product> products = new ArrayList<>();
+    ProductDBController db = new ProductDBController();
 
     public void addProduct(Product p){
+
         products.add(p);
+        db.save(p);
     }
 
     public List<Product> getAllProducts(){
