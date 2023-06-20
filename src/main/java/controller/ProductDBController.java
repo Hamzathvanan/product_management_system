@@ -2,10 +2,9 @@ package controller;
 
 import domain.Product;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDBController {
 
@@ -31,5 +30,25 @@ public class ProductDBController {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public List<Product> getAll() {
+        List<Product> products = new ArrayList<Product>();
+        String query = "select name,type,place,warranty from product";
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Product p = new Product();
+                p.setName(rs.getString(1));
+                p.setType(rs.getString(2));
+                p.setPlace(rs.getString(3));
+                p.setWarranty(rs.getInt(4));
+                products.add(p);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
     }
 }
